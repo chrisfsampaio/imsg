@@ -21,4 +21,9 @@ It is easy as:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## Contact
+christian.fsampaio@gmail.com  
+http://chrisfsampaio.github.io
+
+
 #<3
