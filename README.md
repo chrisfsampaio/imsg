@@ -7,11 +7,15 @@ Now you can curse them right from the terminal!
 
 It is easy as:
 
-    $ gem install imsg
+```bash
+$ gem install imsg
+```
 
 ## Usage
 
-    $ imsg HELLOOO FROM TERMINAL
+```bash
+$ imsg HELLOOO FROM TERMINAL
+```
 
 ## Contributing
 
