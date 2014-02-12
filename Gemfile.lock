@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    imsg (0.0.1)
+    imsg (0.0.2)
+      rb-appscript
 
 GEM
   remote: https://rubygems.org/
@@ -16,4 +17,3 @@ DEPENDENCIES
   bundler (~> 1.5)
   imsg!
   rake
-  rb-appscript

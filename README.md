@@ -5,15 +5,7 @@ Now you can curse them right on the terminal!
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'imsg'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+It is easy as:
 
     $ gem install imsg
 
