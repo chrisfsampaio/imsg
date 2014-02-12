@@ -1,7 +1,7 @@
 # imsg
 
 Tired of getting off your terminal screen to answer that dickheads friends of yours?  
-Now you can curse them right on the terminal!
+Now you can curse them right from the terminal!
 
 ## Installation
 
@@ -11,7 +11,7 @@ It is easy as:
 
 ## Usage
 
-imsg HELLLO FROM TERMINAL
+    $ imsg HELLOOO FROM TERMINAL
 
 ## Contributing
 
