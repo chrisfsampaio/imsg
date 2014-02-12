@@ -34,10 +34,9 @@ a.each do |v|
   end
   b.push names
 end
-puts "\n\nTo which chat you wanna send your message?"
+puts "\nWho would you like to send your message to?"
 puts "(You can choose a number or type a buddy name/email)\n\n"
 puts formatBuddies b
-
 
 response = gets.chomp
 
