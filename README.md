@@ -12,7 +12,19 @@ It is easy as:
 ## Usage
 
     $ imsg HELLOOO FROM TERMINAL
+    
+Then select a number corresponding to the person you wish to message
 
+    To which chat you wanna send your message?
+    (You can choose a number or type a buddy name/email)
+    1 - Christian Sampaio
+    2 - Linus Torvalds
+    3 - Tim Berners Lee
+    4 - Steve Wozniak
+    5 - Sergey Brin
+    6 - Larry Page
+    $ 4
+    
 ## Contributing
 
 1. Fork it ( http://github.com/chrisfsampaio/imsg/fork )
