@@ -1,20 +1,31 @@
 #!/usr/bin/env ruby
 require 'imsg'
 
-# Gets the message and concatenate it into a string
-str = ""
-ARGV.each do |value|
-  str +=value+" "
+def interactWithUser
+	# Gets the message and concatenate it into a string
+	str = ""
+	ARGV.each do |value|
+	  str +=value+" "
+	end
+	str = str.chomp(' ');
+	ARGV.clear
+	STDOUT.flush
+
+	# Show the chat list with the buddies names
+	ImsgHandler.showChatList
+
+	# Gets the buddy name or number
+	response = gets.chomp
+
+	# Send the message captured on the beggining to the selected buddy
+	ImsgHandler.sendMessage str, response
 end
-str = str.chomp(' ');
-ARGV.clear
-STDOUT.flush
 
-# Show the chat list with the buddies names
-ImsgHandler.showChatList
-
-# Gets the buddy name or number
-response = gets.chomp
-
-# Send the message captured on the beggining to the selected buddy
-ImsgHandler.sendMessage str, response
+# Control+C trick in order to get out of command gracefully
+ trap("SIGINT") { throw :ctrl_c }
+ catch :ctrl_c do
+ begin
+    interactWithUser
+ rescue Exception
+ end
+ end
