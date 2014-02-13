@@ -30,6 +30,17 @@ Then select a number corresponding to the person you wish to message
 ```bash
 $ 4
 ```
+
+## Common problems
+###Using special characters
+If you wanna use special characters like parentheses, brackets or quotes you need to escape it. i.e.:
+```bash
+$ imsg HELLOOO FROM TERMINAL \(ESCAPIIING\)
+```
+or
+```bash
+$ imsg "HELLOOO FROM TERMINAL (ESCAPIIING)"
+```
     
 ## Contributing
 
