@@ -2,48 +2,52 @@
 require "imsg/version"
 require 'appscript'
 
-def formatBuddies buddies
-   retVal = ""
-   count = 1
-   buddies.each do |buddy|
-      retVal += count.to_s + " - " +buddy.join(',') +"\n"
-      count += 1
-   end
-   retVal
-end
+module ImsgHandler
 
-def is_i str
-   !!(str =~ /^[-+]?[0-9]+$/)
-end
+	# Formats a list of buddies objects retrieved by Applescript into a readable list 
+	# returns a formatted String
+	def self.formatBuddies buddies
+		formatedString = ""
+		count = 1
+		buddies.each do |buddy|
+			formatedString += "  " + count.to_s + " - " + buddy.join(',') + "\n"
+			count += 1
+		end
+		formatedString
+	end
 
-str = ""
-ARGV.each do |value|
-  str +=value+" "
-end
-str = str.chomp(' ');
-ARGV.clear
-STDOUT.flush
+	# Check if a String is a integer number
+	def self.is_i str
+   		!!(str =~ /^[-+]?[0-9]+$/)
+	end
 
-imsg = Appscript.app("Messages")
-a = imsg.chats.participants.get()
-b = []
-a.each do |v|
-  names = []
-  v.each do |buddy|
-      names.push buddy.name.get()
-  end
-  b.push names
-end
-puts "\nWho would you like to send your message to?"
-puts "(You can choose a number or type a buddy name/email)\n\n"
-puts formatBuddies b
+	# Calls Applescript in order to trigger an iMessage message to a buddy
+	# The buddy parameter accepts a String with either a chat number or a Buddy name
+	def self.sendMessage message, buddy
+		if is_i buddy
+			puts "Sending \'#{message}\'  to chat number #{buddy}"
+			`osascript -e 'tell application "Messages" to send \"#{message}\" to item #{buddy.to_i} of text chats'`
+		else
+			puts "Sending \'#{message}\' to buddy \'#{buddy}\'"
+			`osascript -e 'tell application "Messages" to send \"#{message}\" to buddy \"#{buddy}\"'`
+		end
+	end
 
-response = gets.chomp
+	# Shows the chat list along with their participants
+	def self.showChatList
+		imsg = Appscript.app("Messages")
+		participants = imsg.chats.participants.get()
+		participantsByChat = []
+		participants.each do |v|
+			names = []
+			v.each do |buddy|
+				names.push buddy.name.get()
+			end
+			participantsByChat.push names
+		end
+		puts "\nWho would you like to send your message to?"
+		puts "(You can choose a number or type a buddy name/email)\n\n"
+		puts formatBuddies participantsByChat
+	end
 
-if is_i response
-  puts "Sending \'#{str}\'  to chat number #{response}"
-  `osascript -e 'tell application "Messages" to send \"#{str}\" to item #{response.to_i} of text chats'`
-else
-  puts "Sending \'#{str}\' to buddy \'#{response}\'"
-  `osascript -e 'tell application "Messages" to send \"#{str}\" to buddy \"#{response}\"'`
 end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    imsg (0.0.2)
+    imsg (1.0.0)
       rb-appscript
 
 GEM
