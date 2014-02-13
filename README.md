@@ -41,6 +41,15 @@ or
 ```bash
 $ imsg "HELLOOO FROM TERMINAL (ESCAPIIING)"
 ```
+
+###Not having write permissions:
+
+If you don't have write access to your Ruby folder:
+
+```bash
+$ sudo gem install imsg
+```
+
     
 ## Contributing
 
