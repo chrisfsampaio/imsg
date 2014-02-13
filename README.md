@@ -32,7 +32,7 @@ $ 4
 ```
 
 ## Common problems
-###Using special characters
+###Using special characters:
 If you wanna use special characters like parentheses, brackets or quotes you need to escape it. i.e.:
 ```bash
 $ imsg HELLOOO FROM TERMINAL \(ESCAPIIING\)
