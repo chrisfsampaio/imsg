@@ -77,9 +77,8 @@ module ImsgHandler
 	# Shows the chat list along with their participants
 	def self.showChatList
 		chats = Chat.fetch_all
-		puts "\nWho would you like to send your message to?"
+		puts "\nTo whom would you like to send your message?"
 		puts "(You can choose a number or type a buddy name/email)\n\n"
 		puts display_chats(chats)
 	end
-
 end
