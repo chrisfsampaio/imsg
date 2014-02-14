@@ -58,14 +58,14 @@ module ImsgHandler
 	end
 
 	# Check if a String is a integer number
-	def self.is_i str
-   		!!(str =~ /^[-+]?[0-9]+$/)
+	def self.is_i?(str)
+		str =~ /\A\d+\z/
 	end
 
 	# Calls Applescript in order to trigger an iMessage message to a buddy
 	# The buddy parameter accepts a String with either a chat number or a Buddy name
 	def self.sendMessage message, buddy
-		if is_i buddy
+		if is_i?(buddy)
 			puts "Sending \'#{message}\'  to chat number #{buddy}"
 			`osascript -e 'tell application "Messages" to send \"#{message}\" to item #{buddy.to_i} of text chats'`
 		else
