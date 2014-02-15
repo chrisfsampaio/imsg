@@ -21,7 +21,7 @@ def interactWithUser
 	ImsgHandler.sendMessage str, response
 end
 
-# Control+C trick in order to get out of command gracefully
+# Control+C trick in order to get out of exit() signal gracefully
  trap("SIGINT") { throw :ctrl_c }
  catch :ctrl_c do
  begin
