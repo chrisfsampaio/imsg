@@ -1,40 +1,47 @@
-#!/usr/bin/env ruby
-require 'imsg/version'
-require 'model/chat'
+require "thor"
+require "imsg/chat"
+require "imsg/participant"
 
-module ImsgHandler
-	CHAT_DISPLAY_LIMIT = 15
+module Imsg
+  class CLI < Thor
+    include Thor::Actions
 
-	def self.display_chats(chats)
-		sort_by_updated(chats).first(CHAT_DISPLAY_LIMIT).map(&:to_s).join("\n")
-	end
+    CHAT_DISPLAY_LIMIT = 12
 
-	def self.sort_by_updated(chats)
-		chats.sort{ |a, b| b.updated <=> a.updated }
-	end
+    # Sends a message to a buddy
+    desc "message", "Send a message to a buddy"
+    option :buddy, :aliases => 'b', :type => :string
+    def message msg
+      options[:buddy].nil? ? buddy = get_user_input("To whom would you like to send this message to?") : buddy = options[:buddy]
 
-	# Check if a String is a integer number
-	def self.is_i?(str)
-		str =~ /\A\d+\z/
-	end
+      puts "Sending '#{msg}' to buddy #{buddy}"
+      `osascript -e 'tell application "Messages" to send \"#{msg}\" to buddy \"#{buddy}\"'`
+    end
 
-	# Calls Applescript in order to trigger an iMessage message to a buddy
-	# The buddy parameter accepts a String with either a chat number or a Buddy name
-	def self.sendMessage message, buddy
-		if is_i?(buddy)
-			puts "Sending \'#{message}\'  to chat number #{buddy}"
-			`osascript -e 'tell application "Messages" to send \"#{message}\" to item #{buddy.to_i} of text chats'`
-		else
-			puts "Sending \'#{message}\' to buddy \'#{buddy}\'"
-			`osascript -e 'tell application "Messages" to send \"#{message}\" to buddy \"#{buddy}\"'`
-		end
-	end
+    # Sends a message to an existing chat
+    desc "chat", "Send a new message to an existing chat"
+    option :chat_number, :aliases => 'n', :type => :numeric
+    def chat msg
+      options[:chat_number].nil? ? number = get_user_input("Which chat would you like to send this message to?") : number = options[:chat_number]
 
-	# Shows the chat list along with their participants
-	def self.showChatList
-		chats = Chat.fetch_all
-		puts "\nTo whom would you like to send your message?"
-		puts "(You can choose a number or type a buddy name/email)\n\n"
-		puts display_chats(chats)
-	end
+      puts "Sending '#{msg}' to chat number #{number}"
+      `osascript -e 'tell application "Messages" to send \"#{msg}\" to item #{number} of text chats'`
+    end
+
+    # Shows current chats
+    desc "chats", "Shows your current chats"
+    option :limit, :type => :numeric, :aliases => 'l'
+    def chats
+      limit = options[:limit].nil? ? CHAT_DISPLAY_LIMIT : options[:limit]
+      puts Chat.display_chats(limit)
+    end
+
+    no_commands do
+      def get_user_input message
+        chats
+        ask(message)
+      end
+    end
+
+  end
 end
