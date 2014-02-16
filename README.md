@@ -1,6 +1,6 @@
 # imsg
 
-Tired of getting off your terminal screen to answer those dickhead friends of yours?  
+Tired of getting off your terminal screen to answer those dickhead friends of yours?
 Now you can curse them right from the terminal!
 
 ## Installation
@@ -13,44 +13,80 @@ $ gem install imsg
 
 ## Usage
 
+### Send a message to a buddy and get the chat list
 ```bash
-$ imsg HELLOOO FROM TERMINAL
+$ imsg message "hello from the terminal"
 ```
 
-Then select a number corresponding to the person you wish to message
+Then select a buddy corresponding to the person you wish to message
 
-    To which chat you wanna send your message?
-    (You can choose a number or type a buddy name/email)
     1 - Christian Sampaio
     2 - Linus Torvalds
     3 - Tim Berners Lee
     4 - Steve Wozniak
     5 - Sergey Brin
     6 - Larry Page
+    To whom would you like to send this message to?
+
+```bash
+$ Christian Sampaio
+```
+
+### Send a message to a known buddy without list
+```bash
+$ imsg message "hello from the terminal" -b 'Christian Sampaio'
+```
+
+### Send a message to a chat and get the chat list
+```bash
+$ imsg chat "hello from the terminal"
+```
+
+Then select a chat number corresponding to the chat you wish to message
+
+    1 - Christian Sampaio
+    2 - Linus Torvalds
+    3 - Tim Berners Lee
+    4 - Steve Wozniak
+    5 - Sergey Brin
+    6 - Larry Page
+    Which chat would you like to send this message to?
+
 ```bash
 $ 4
 ```
 
-## Common problems
-###Using special characters:
-If you wanna use special characters like parentheses, brackets or quotes you need to escape it. i.e.:
+### Send a message to a known chat without list
 ```bash
-$ imsg HELLOOO FROM TERMINAL \(ESCAPIIING\)
-```
-or
-```bash
-$ imsg "HELLOOO FROM TERMINAL (ESCAPIIING)"
+$ imsg chat "hello from the terminal" -n 1
 ```
 
-###Not having write permissions:
+### View current chats
+```bash
+$ imsg chats
+```
 
+    1 - Christian Sampaio
+    2 - Linus Torvalds
+    3 - Tim Berners Lee
+    4 - Steve Wozniak
+    5 - Sergey Brin
+    6 - Larry Page
+
+### View current chats with limit
+```bash
+$ imsg chats -l 1
+```
+
+    1 - Christian Sampaio
+
+### Not having write permissions:
 If you don't have write access to your Ruby folder:
 
 ```bash
 $ sudo gem install imsg
 ```
 
-    
 ## Contributing
 
 1. Fork it ( http://github.com/chrisfsampaio/imsg/fork )
@@ -60,8 +96,8 @@ $ sudo gem install imsg
 5. Create new Pull Request
 
 ## Contact
-christian.fsampaio@gmail.com  
-http://chrisfsampaio.github.io
 
+christian.fsampaio@gmail.com
+http://chrisfsampaio.github.io
 
 #<3
