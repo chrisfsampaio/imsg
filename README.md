@@ -13,6 +13,17 @@ $ gem install imsg
 
 ## Usage
 
+### View current imsg commands
+```bash
+$ imsg
+```
+
+    Commands:
+      imsg chat            # Send a new message to an existing chat
+      imsg chats           # Shows your current chats
+      imsg help [COMMAND]  # Describe available commands or one specific command
+      imsg message         # Send a message to a buddy
+
 ### Send a message to a buddy and get the chat list
 ```bash
 $ imsg message "hello from the terminal"
