@@ -11,7 +11,7 @@ class Chat
 	end
 
 	def to_s
-		"#{chat_number} - #{participants.map(&:name).join(", ")}"
+		participants.map(&:name).join(", ")
 	end
 
 	def self.fetch_all
