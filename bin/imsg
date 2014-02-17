@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 require 'imsg'
 
-trap("INT") { puts "Quiting Imsg..."; exit}
+trap("INT") { puts "\n\nExiting Imsg..."; exit}
 Imsg::CLI.start(ARGV)
