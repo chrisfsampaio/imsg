@@ -11,6 +11,10 @@ It is easy as:
 $ gem install imsg
 ```
 
+## Requirements
+Mac OS X (will not work on other unix/linux)
+Applescript
+
 ## Usage
 
 ```bash
