@@ -11,9 +11,6 @@ It is easy as:
 $ gem install imsg
 ```
 
-## Requirements
-Mac OS X (will not work on other unix/linux)
-
 ## Usage
 
 ```bash
@@ -33,6 +30,10 @@ Then select a number corresponding to the person you wish to message
 ```bash
 $ 4
 ```
+
+## Requirements
+Mac OS X (will not work on other unix/linux)
+
 
 ## Common problems
 ###Using special characters:
