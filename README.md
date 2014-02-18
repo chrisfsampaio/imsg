@@ -1,7 +1,7 @@
 # imsg
 
-Tired of getting off your terminal screen to answer those dickhead friends of yours?
-Now you can curse them right from the terminal!
+Tired of getting off your terminal screen to answer those friends of yours?
+Now you can contact them right from the terminal!
 
 ## Installation
 
