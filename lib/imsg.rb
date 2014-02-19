@@ -24,7 +24,6 @@ module ImsgHandler
 		script_path = File.expand_path('../applescript', __FILE__)
 		if (chat)
 			puts "Sending \"#{message}\" to chat with \"#{chat.to_s}\""
-			# puts `ls`
 			`osascript #{script_path}/sendToChat.scpt \"#{message}\" \"#{buddy}\"`
 		else
 			puts "Sending \"#{message}\" to buddy \"#{buddy}\""
