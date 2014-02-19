@@ -21,12 +21,14 @@ module ImsgHandler
 	# Calls Applescript in order to trigger an iMessage message to a buddy
 	# The buddy parameter accepts a String with either a chat number or a Buddy name
 	def self.send_message message, buddy, chat
+		script_path = File.expand_path('../applescript', __FILE__)
 		if (chat)
-			puts "Sending \'#{message}\'  to chat with #{chat.to_s}"
-			`osascript -e 'tell application "Messages" to send \"#{message}\" to item #{buddy.to_i} of text chats'`
+			puts "Sending \"#{message}\" to chat with \"#{chat.to_s}\""
+			# puts `ls`
+			`osascript #{script_path}/sendToChat.scpt \"#{message}\" \"#{buddy}\"`
 		else
-			puts "Sending \'#{message}\' to buddy \'#{buddy}\'"
-			`osascript -e 'tell application "Messages" to send \"#{message}\" to buddy \"#{buddy}\"'`
+			puts "Sending \"#{message}\" to buddy \"#{buddy}\""
+			`osascript #{script_path}/sendToBuddy.scpt \"#{message}\" \"#{buddy}\"`
 		end
 	end
 
