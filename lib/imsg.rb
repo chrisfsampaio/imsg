@@ -6,7 +6,7 @@ module ImsgHandler
 	CHAT_DISPLAY_LIMIT = 15
 
 	def self.display_chats(chats)
-		chats.first(CHAT_DISPLAY_LIMIT).map.with_index{ |x, i| "#{i + 1} - #{x.to_s}"}.join("\n")
+		chats.first(CHAT_DISPLAY_LIMIT).map.with_index{ |x, i| "\e[1;32m#{i + 1} \e[1;31m- \e[1;36m#{x.to_s}"}.join("\n")
 	end
 
 	def self.sort_by_updated(chats)
@@ -23,10 +23,10 @@ module ImsgHandler
 	def self.send_message message, buddy, chat
 		script_path = File.expand_path('../applescript', __FILE__)
 		if (chat)
-			puts "Sending \"#{message}\" to chat with \"#{chat.to_s}\""
+			puts "\e[0mSending \e[1;32m\"#{message}\" \e[0mto chat with \e[1;36m\"#{chat.to_s}\""
 			`osascript #{script_path}/sendToChat.scpt \"#{message}\" \"#{buddy}\"`
 		else
-			puts "Sending \"#{message}\" to buddy \"#{buddy}\""
+			puts "\e[0mSending \e[1;32m\"#{message}\" \e[0mmto buddy \e[1;36m\"#{buddy}\""
 			`osascript #{script_path}/sendToBuddy.scpt \"#{message}\" \"#{buddy}\"`
 		end
 	end
@@ -36,7 +36,7 @@ def self.ask_for_buddy_with_msg msg
 		chats = sort_by_updated(Chat.fetch_all)
 		puts "\nTo whom would you like to send your message?"
 		puts "(You can choose a number or type a buddy name/email)\n\n"
-		puts display_chats(chats)
+		puts display_chats(chats) + "\e[1;35m"
 		response = gets.chomp
 		chat = is_i?(response) ? chats[response.to_i - 1] : nil
 		response = chat ? chat.chat_number.to_s : response
