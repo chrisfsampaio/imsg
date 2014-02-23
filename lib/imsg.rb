@@ -6,7 +6,7 @@ module ImsgHandler
 	CHAT_DISPLAY_LIMIT = 15
 
 	def self.display_chats(chats)
-		chats.first(CHAT_DISPLAY_LIMIT).map.with_index{ |x, i| "\e[1;32m#{i + 1} \e[1;31m- \e[1;36m#{x.to_s}"}.join("\n")
+		chats.first(CHAT_DISPLAY_LIMIT).map.with_index{ |x, i| "\e[1;32m#{i + 1} \e[1;31m- \e[1;36m#{x.to_s}\e[0m"}.join("\n")
 	end
 
 	def self.sort_by_updated(chats)
@@ -23,10 +23,10 @@ module ImsgHandler
 	def self.send_message message, buddy, chat
 		script_path = File.expand_path('../applescript', __FILE__)
 		if (chat)
-			puts "\e[0mSending \e[1;32m\"#{message}\" \e[0mto chat with \e[1;36m\"#{chat.to_s}\""
+			puts "\e[0mSending \e[1;32m\"#{message}\"\e[0m to chat with \e[1;36m\"#{chat.to_s}\"\e[0m"
 			`osascript #{script_path}/sendToChat.scpt \"#{message}\" \"#{buddy}\"`
 		else
-			puts "\e[0mSending \e[1;32m\"#{message}\" \e[0mmto buddy \e[1;36m\"#{buddy}\""
+			puts "\e[0mSending \e[1;32m\"#{message}\"\e[0mm to buddy \e[1;36m\"#{buddy}\"\e[0m"
 			`osascript #{script_path}/sendToBuddy.scpt \"#{message}\" \"#{buddy}\"`
 		end
 	end
