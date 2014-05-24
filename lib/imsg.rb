@@ -26,7 +26,7 @@ module ImsgHandler
 			puts "\e[0mSending \e[1;32m\"#{message}\"\e[0m to chat with \e[1;36m\"#{chat.to_s}\"\e[0m"
 			`osascript #{script_path}/sendToChat.scpt \"#{message}\" \"#{buddy}\"`
 		else
-			puts "\e[0mSending \e[1;32m\"#{message}\"\e[0mm to buddy \e[1;36m\"#{buddy}\"\e[0m"
+			puts "\e[0mSending \e[1;32m\"#{message}\"\e[0m to buddy \e[1;36m\"#{buddy}\"\e[0m"
 			`osascript #{script_path}/sendToBuddy.scpt \"#{message}\" \"#{buddy}\"`
 		end
 	end
@@ -39,6 +39,10 @@ def self.ask_for_buddy_with_msg msg
 		puts display_chats(chats) + "\e[1;35m"
 		response = gets.chomp
 		chat = is_i?(response) ? chats[response.to_i - 1] : nil
+		# Gets the last recipient if no chat/user was selected
+		no_user = true if (!chat) && (!response || response.length <= 0)
+		chat = chats.first if no_user
+
 		response = chat ? chat.chat_number.to_s : response
 		
 		send_message(msg, response, chat)
