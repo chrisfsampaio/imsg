@@ -8,7 +8,7 @@ Now you can curse them right from the terminal!
 It is easy as:
 
 ```bash
-$ gem install imsg
+$ sudo gem install imsg
 ```
 
 ## Usage
