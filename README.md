@@ -36,7 +36,7 @@ Mac OS X (will not work on other unix/linux)
 
 
 ## Common problems
-###Using special characters:
+### Using special characters:
 If you wanna use special characters like parentheses, brackets or quotes you need to escape it. i.e.:
 ```bash
 $ imsg HELLOOO FROM TERMINAL \(ESCAPIIING\)
@@ -46,7 +46,7 @@ or
 $ imsg "HELLOOO FROM TERMINAL (ESCAPIIING)"
 ```
 
-###Not having write permissions:
+### Not having write permissions:
 
 If you don't have write access to your Ruby folder:
 
@@ -68,4 +68,4 @@ christian.fsampaio@gmail.com
 http://chrisfsampaio.github.io
 
 
-#<3
+# <3
